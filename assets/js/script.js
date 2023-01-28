@@ -2,6 +2,9 @@ let timeBlockCont = $('#timeBlockCont')
 let currentTime = moment().format("dddd, Do MMMM YYYY");
 let currentTimeP = $('#currentDay')
 
+let blockNumArr = []
+let eventTextArr = []
+
 
 currentTimeP.html(currentTime);
 
@@ -49,9 +52,23 @@ for (let i = 8; i <= 17; i++){
 }
 
 
-$('span').click(function(){
-console.log('click')
+
+$('span').click(function(event){
+
+    let target = event.target;
+    let blockNum = target.getAttribute('data-markerBtn')
+    let targetBlock = target.previousElementSibling
+    let eventText = targetBlock.value
+
+    blockNumArr.push(blockNum);
+    eventTextArr.push(eventText);
+
+    // console.log(eventText + blockNum)
+    localStorage.setItem("Blocknum",blockNum )
+    localStorage.setItem("event", eventText)
 
 
-
+    
 })
+
+
