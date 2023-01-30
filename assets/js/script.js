@@ -5,7 +5,6 @@ let currentTimeP = $('#currentDay')
 let blockNumArr = []
 let eventTextArr = []
 
-
 currentTimeP.html(currentTime);
 
 
@@ -21,14 +20,14 @@ for (let i = 8; i <= 17; i++){
     hourBar.append(hourTab);
 
     let hourBlock = $('<input>');
-    hourBlock.attr('data-markerBlock', [i]);
+    hourBlock.attr('id', [i]);
     hourBlock.text('hourbar' + [i]);
     hourBlock.addClass('col-10 time-block');
     hourBar.append(hourBlock)
 
     let saveBlock = $('<span>');
     saveBlock.addClass('col-1 saveBtn');
-    saveBlock.attr('data-markerBtn', [i])
+    saveBlock.attr('id', [i])
     saveBlock.text('save')
     hourBar.append(saveBlock);
 
@@ -51,24 +50,38 @@ for (let i = 8; i <= 17; i++){
     setInterval(colorBlocks, 60000)
 }
 
+//retrieved stored events and put them into the blocks
+
+for (let i = 0; i<localStorage.length;i++){
+    //pushes any stored block numbers to blocknumber array
+    blockNumArr.push(localStorage.key(i))
+    // console.log(blockNumArr)
+
+    let storedBlockNum = blockNumArr[i]
+
+    //storedBlocknum = key to local storage
+    let storedText = localStorage.getItem(storedBlockNum)
+
+    let receivingBlock = $('#' + storedBlockNum)
+    console.log(receivingBlock)
+
+
+
+
+    }
+
+
 
 
 $('span').click(function(event){
 
+
+
     let target = event.target;
-    let blockNum = target.getAttribute('data-markerBtn')
+    let blockNum = target.getAttribute('id')
     let targetBlock = target.previousElementSibling
     let eventText = targetBlock.value
+    // let storedBlockNum = localStorage.getItem(blockNum)
 
-    blockNumArr.push(blockNum);
-    eventTextArr.push(eventText);
-
-    // console.log(eventText + blockNum)
-    localStorage.setItem("Blocknum",blockNum )
-    localStorage.setItem("event", eventText)
-
-
-    
+    localStorage.setItem(blockNum, eventText);
 })
-
-
