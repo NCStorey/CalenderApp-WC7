@@ -19,9 +19,8 @@ for (let i = 8; i <= 17; i++){
     hourTab.addClass('col-1 hour');
     hourBar.append(hourTab);
 
-    let hourBlock = $('<input>');
+    let hourBlock = $('<textarea>');
     hourBlock.attr('id', [i]);
-    hourBlock.text('hourbar' + [i]);
     hourBlock.addClass('col-10 time-block');
     hourBar.append(hourBlock)
 
@@ -41,9 +40,7 @@ for (let i = 8; i <= 17; i++){
         hourBlock.addClass('future')
     } else {hourBlock.addClass('past')
         
-    }
-
-    console.log("update")}
+    }}
 
     colorBlocks()
     
@@ -63,19 +60,12 @@ for (let i = 0; i<localStorage.length;i++){
     let storedText = localStorage.getItem(storedBlockNum)
 
     let receivingBlock = $('#' + storedBlockNum)
-    console.log(receivingBlock)
+    
+    receivingBlock[0].textContent = storedText
 
-
-
-
-    }
-
-
-
+}
 
 $('span').click(function(event){
-
-
 
     let target = event.target;
     let blockNum = target.getAttribute('id')
@@ -84,4 +74,11 @@ $('span').click(function(event){
     // let storedBlockNum = localStorage.getItem(blockNum)
 
     localStorage.setItem(blockNum, eventText);
+})
+
+$('#clearBtn').click(function(event){
+
+    localStorage.clear();
+    location.reload()
+    return;
 })
