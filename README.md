@@ -60,3 +60,7 @@ A font awesome link was included in the starter code but was not untilised.
 
 Please refer to the repo for the license information.
 
+
+## Link to the live site 
+
+https://ncstorey.github.io/CalenderApp-WC7/
